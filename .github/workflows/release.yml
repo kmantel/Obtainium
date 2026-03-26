@@ -52,6 +52,15 @@ jobs:
           cp ./sign.sh ./build/app/outputs/flutter-apk/
           ls -l ./build/app/outputs/flutter-apk/
 
+      - name: Sign APKs
+        env:
+            KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+            KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+        run: |
+          echo "${KEYSTORE_BASE64}" | base64 -d > keystore.jks
+          echo "${KEYSTORE_PASSWORD}" | ./sign.sh keystore.jks ./build/app/outputs/flutter-apk/
+          rm -f keystore.jks
+
       - name: Save Unsigned APKs as Action Artifacts
         uses: actions/upload-artifact@v4
         with:
