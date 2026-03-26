@@ -416,6 +416,7 @@ class _ObtainiumState extends State<Obtainium> {
               },
               child: const HomePage(),
             ),
+            scrollBehavior: const ScrollBehavior().copyWith(overscroll: false),
           );
         },
       ),

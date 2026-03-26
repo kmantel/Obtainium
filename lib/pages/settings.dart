@@ -173,7 +173,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: Opacity(opacity: curvedValue, child: widget),
               );
             },
-        transitionDuration: const Duration(milliseconds: 250),
+        transitionDuration: const Duration(milliseconds: 0),
       );
     }
 
