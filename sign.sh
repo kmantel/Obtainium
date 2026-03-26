@@ -33,6 +33,5 @@ for apk in "$BUILD_DIR"/*-release*.apk; do
   mv "$apk" "$unsignedApk"
   ${ANDROID_HOME}/build-tools/$(ls ${ANDROID_HOME}/build-tools/ | tail -1)/apksigner sign --ks "$KEYSTORE_LOCATION" --ks-pass pass:"${KEYSTORE_PASSWORD}" --out "${apk}" "${unsignedApk}"
   sha256sum ${apk} | cut -d " " -f 1 >"$apk".sha256
-  gpg --batch --sign --detach-sig "$apk".sha256
   rm "$unsignedApk"
 done
